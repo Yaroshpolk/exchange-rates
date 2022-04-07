@@ -1,0 +1,13 @@
+.currencies__controls {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+.currencies__controls-item {
+    text-align: center;
+    padding: 10px 5px;
+}
