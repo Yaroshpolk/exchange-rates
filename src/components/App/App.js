@@ -6,42 +6,54 @@ import Footer from "../Footer/Footer";
 
 function App() {
 
-  let [currenciesData, setCurrenciesData] = React.useState({});
-  let [isLoading, setIsLoading] = React.useState(true);
+    const [currenciesData, setCurrenciesData] = React.useState({});
+    const [isLoading, setIsLoading] = React.useState(true);
+    const [activeCurrency, setActiveCurrency] = React.useState();
 
-  const getServerData = () => {
-      setIsLoading(true);
-      fetch('https://www.cbr-xml-daily.ru/daily_json.js')
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
-            setCurrenciesData(data);
-        })
-        .catch((err) => {
-          throw new Error(`Ошибка соединения с сервером: ${err.message()}`)
-        })
-          .finally(() => {
-              setIsLoading(false);
-          })
-  }
+    const getServerData = () => {
+        setIsLoading(true);
+        fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                setCurrenciesData(data);
+            })
+            .catch((err) => {
+                throw new Error(`Ошибка соединения с сервером: ${err.message()}`)
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
+    }
 
-  React.useEffect(() => {
-    getServerData();
-  }, [])
+    React.useEffect(() => {
+        getServerData();
+    }, []);
 
-  return (
-    <div className="App">
-        <Header />
-        <div className="content">
-            <Currencies
-                isLoading = {isLoading}
-                data = {currenciesData}
-            />
+    React.useEffect(() => {
+        activeCurrency?.classList.add('currency_active');
+    }, [activeCurrency])
+
+    const handleSetActiveCurrency = (evt) => {
+        if (activeCurrency === evt.target.closest('.currency')) return
+        activeCurrency?.classList.remove('currency_active');
+        setActiveCurrency(evt.target.closest('.currency'));
+    }
+
+    return (
+        <div className="App">
+            <Header/>
+            <div className="content">
+                <Currencies
+                    isLoading={isLoading}
+                    data={currenciesData}
+                    activeCurrFunc={handleSetActiveCurrency}
+                />
+            </div>
+            <Footer/>
         </div>
-        <Footer />
-    </div>
-  );
+    );
 }
 
 export default App;

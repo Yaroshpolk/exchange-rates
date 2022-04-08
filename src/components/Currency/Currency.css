@@ -5,6 +5,20 @@
     text-align: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding: 10px 5px;
+    cursor: pointer;
+    transition: background-color .1s ease-in-out;
+}
+
+.currency:hover {
+    background-color: rgba(220, 220, 15, 0.1);
+}
+
+.currency_active {
+    background-color: rgba(220, 220, 15, 0.3);
+}
+
+.currency_active:hover {
+    background-color: rgba(220, 220, 15, 0.3);
 }
 
 .currency__value_top {
@@ -12,5 +26,5 @@
 }
 
 .currency__value_low {
-    color: red;
+    color: rgb(218, 27, 27);
 }

@@ -16,6 +16,7 @@ function Currencies(props) {
                 nominal = { item[1].Nominal }
                 value = { item[1].Value }
                 oldValue = { item[1].Previous }
+                activeCurrFunc = { props.activeCurrFunc }
             />
         })
     }
