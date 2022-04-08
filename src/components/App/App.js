@@ -2,6 +2,7 @@ import './App.css';
 import React from "react";
 import Header from "../Header/Header";
 import Currencies from "../Currencies/Currencies";
+import Footer from "../Footer/Footer";
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
                 data = {currenciesData}
             />
         </div>
+        <Footer />
     </div>
   );
 }

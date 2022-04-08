@@ -9,18 +9,16 @@ function Currencies(props) {
     if (!props.isLoading) {
         currList = Object.entries(props.data.Valute).map(item => {
             return <Currency
-                key = {item[1].NumCode}
-                numCode = {item[1].NumCode}
-                charCode = {item[1].CharCode}
-                name = {item[1].Name}
-                nominal = {item[1].Nominal}
-                value = {item[1].Value}
-                oldValue = {item[1].Previous}
+                key = { item[1].NumCode }
+                numCode = { item[1].NumCode }
+                charCode = { item[1].CharCode }
+                name = { item[1].Name }
+                nominal = { item[1].Nominal }
+                value = { item[1].Value }
+                oldValue = { item[1].Previous }
             />
         })
     }
-
-    console.log(currList)
 
     const handleValueSort = () => {
         currList.sort((a, b) => b - a)

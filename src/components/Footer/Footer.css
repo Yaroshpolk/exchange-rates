@@ -1,0 +1,11 @@
+.footer {
+    background-color: rgba(0,0,0,.1);
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.footer__link {
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+}
