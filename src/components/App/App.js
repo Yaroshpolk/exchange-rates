@@ -6,7 +6,8 @@ import Footer from "../Footer/Footer";
 
 function App() {
 
-    const [currenciesData, setCurrenciesData] = React.useState({});
+    const [serverData, setServerData] = React.useState({});
+    const [currenciesList, setCurrenciesList] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(true);
     const [activeCurrency, setActiveCurrency] = React.useState();
 
@@ -17,10 +18,11 @@ function App() {
                 return res.json();
             })
             .then((data) => {
-                setCurrenciesData(data);
+                setServerData(data);
+                setCurrenciesList(Object.entries(data.Valute).map(item => item[1]))
             })
             .catch((err) => {
-                throw new Error(`Ошибка соединения с сервером: ${err.message()}`)
+                throw new Error(`Ошибка соединения с сервером: ${err.message}`)
             })
             .finally(() => {
                 setIsLoading(false);
@@ -37,6 +39,7 @@ function App() {
 
     const handleSetActiveCurrency = (evt) => {
         if (activeCurrency === evt.target.closest('.currency')) return
+
         activeCurrency?.classList.remove('currency_active');
         setActiveCurrency(evt.target.closest('.currency'));
     }
@@ -47,7 +50,7 @@ function App() {
             <div className="content">
                 <Currencies
                     isLoading={isLoading}
-                    data={currenciesData}
+                    data={currenciesList}
                     activeCurrFunc={handleSetActiveCurrency}
                 />
             </div>
